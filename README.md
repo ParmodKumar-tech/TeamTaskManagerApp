@@ -80,6 +80,19 @@ npm run dev
 - The frontend communicates with the backend via Axios and uses React Router for navigation.
 - Validation middleware ensures request payloads match expected schemas before controller execution.
 
+## Database (NoSQL) Relationship
+
+Project
+ ├── has many Tasks
+ ├── has many Members (Users)
+ └── created by one Admin
+ 
+Task
+ ├── belongs to one Project
+ ├── assigned to one User
+ └── created by one Admin
+ 
+
 ## Recommended Workflow
 
 1. Start MongoDB and ensure `MONGO_DB_URL` is valid.
