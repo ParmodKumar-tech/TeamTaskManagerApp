@@ -31,7 +31,7 @@ function DashboardPage(){
   };
 
     return (
-        <>
+        <div className='overflow-x-hidden'>
         <TaskOverview 
         openTaskForm={openTaskForm} 
         openProjectForm={openProjectForm} />
@@ -51,7 +51,7 @@ function DashboardPage(){
           reRenderComponent={reRenderComponent}
         />
         )}   
-        </>
+        </div>
     )
 
 }
