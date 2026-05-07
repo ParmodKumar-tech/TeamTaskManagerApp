@@ -68,7 +68,7 @@ function Header(){
                     
                 {
 
-                <div className='hidden md:flex">    
+                <div className='hidden md:flex'>    
                 <p className='my-auto font-bold mx-2'>|</p>
                 <div className='flex flex-col'>
                 <p>{userName?`${userName} (${role})`:"Not login"}</p>
