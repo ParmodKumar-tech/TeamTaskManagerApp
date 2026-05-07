@@ -6,52 +6,26 @@ import { useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 function DashboardPage(){
-
-   const [showForm, setShowForm]=useState(false);
-   const [selectedData,setSelectedData]=useState(null);
-   const [refreshKey, setRefreshKey] = useState(0); 
-   const [mode,setMode]=useState("");
-   const {role}=useAuth();
-
-    const openProjectForm=(project)=>{
-    setMode("project");
-    setSelectedData(project);
-    setShowForm(true);
-   }
-
-   const openTaskForm=(task)=>{
-    setMode("task");
-    setSelectedData(task);
-    setShowForm(true);
-   }
-
-
-   const reRenderComponent = () => {
-    setRefreshKey((prev) => prev + 1);
-  };
+   const 
+   {
+    showForm,
+    role,
+    openProjectForm,
+    openTaskForm,
+    selectedData,
+    setSelectedData,
+    setRefreshKey,
+    refreshKey,
+    mode,
+    setMode
+    }=useAuth();
 
     return (
-        <>
-        <TaskOverview 
-        openTaskForm={openTaskForm} 
-        openProjectForm={openProjectForm} />
-
-        <AllTaskAndProject 
-        openTaskForm={openTaskForm} 
-        openProjectForm={openProjectForm} 
-        refreshKey={refreshKey}
-        />
-
-        {showForm && (
-        <Form
-          mode={mode}
-          selectedData={selectedData}
-          setSelectedData={setSelectedData}
-          setShowForm={setShowForm}
-          reRenderComponent={reRenderComponent}
-        />
-        )}   
-        </>
+        <div className='overflow-x-hidden'>
+        <TaskOverview />
+        <AllTaskAndProject/>
+        {showForm && <Form/>}   
+        </div>
     )
 
 }

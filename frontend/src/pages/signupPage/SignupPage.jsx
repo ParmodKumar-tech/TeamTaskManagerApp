@@ -36,7 +36,17 @@ function SignupPage() {
       setUserName(res.data.name);
       setUserId(res.data._id);
       setRole(res.data.role);
+
+      setTaskCount({
+        totalTask: 0,
+        pendingTask: 0,
+        completedTask: 0,
+        overdueTask: 0,
+      });
+
+
       toast.success(res.message);
+
       navigate("/");
     } else {
       toast.error(res.message);

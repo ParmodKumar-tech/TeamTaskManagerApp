@@ -4,10 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../contexts/AuthContext';
 import { loginUser } from '../../api/user.api';
+import { useEffect } from 'react';
 
 function LoginPage() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
-  const {setUserName,setUserId,setRole}=useAuth();
+  const {setUserName,setUserId,setRole,setTaskCount}=useAuth();
   const navigate = useNavigate();
 
   const formFields = [
@@ -25,10 +26,18 @@ function LoginPage() {
       localStorage.setItem("name", res.data.name);
       localStorage.setItem("userId",res.data._id);
       localStorage.setItem("role", res.data.role);
+      setTaskCount({
+        totalTask: 0,
+        pendingTask: 0,
+        completedTask: 0,
+        overdueTask: 0,
+      });
+      
       setUserName(res.data.name);
       setUserId(res.data._id);
       setRole(res.data.role);
       toast.success(res.message);
+      
       navigate("/");
     } else {
       toast.error(res.message);

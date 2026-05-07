@@ -4,11 +4,10 @@ import userRouter from "./src/routes/user.route.js";
 import projectRouter from "./src/routes/project.route.js";
 import cookieParser from "cookie-parser";
 import connectDB from "./src/db/db.config.js";
-import dns from "dns";
 import cors from "cors";
 
 import "dotenv/config";
-dns.setServers(["1.1.1.1","8.8.8.8"]);
+
 
 const app=express();
 connectDB();

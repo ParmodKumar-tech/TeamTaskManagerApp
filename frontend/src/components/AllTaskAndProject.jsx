@@ -4,21 +4,23 @@ import TaskCard from "./TaskCard";
 import { deleteProject, fetchProjects } from "../api/project.api";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { fetchTasks } from "../api/task.api";
+import { fetchTasks, userBasedFetchTasks } from "../api/task.api";
 
 
-function AllTaskAndProject({openTaskForm,openProjectForm,refreshKey }){
-
-    const {role,setTaskCount} =useAuth();
+function AllTaskAndProject(){
+    const {role,setTaskCount,openProjectForm,openTaskForm,refreshKey} =useAuth();
     const [data,setData]=useState([]); 
+  
 
     useEffect(() => {
         if (!role) return;
 
         if (role === "admin") {
             Projects();
+            
         } else if (role === "member") {
-            Tasks();
+            fetchTask();
+
         }
     }, [role,refreshKey]);
 
@@ -37,7 +39,8 @@ function AllTaskAndProject({openTaskForm,openProjectForm,refreshKey }){
 
     }
 
-    const Tasks = async () => {
+   
+    const fetchTask = async () => {
     const toastId = toast.loading("please wait...");
     const res = await fetchTasks();
     
@@ -66,8 +69,8 @@ function AllTaskAndProject({openTaskForm,openProjectForm,refreshKey }){
         setData([]);
     }
     toast.dismiss(toastId);
-    }
 
+}
 
     const onDeleteRerender = async (deletedData) => {
     setData((prev) => prev.filter((t) => t._id !== deletedData._id));
@@ -105,6 +108,8 @@ function AllTaskAndProject({openTaskForm,openProjectForm,refreshKey }){
             />
         ))}
         </div>
+
+       
         </>
     )
 }

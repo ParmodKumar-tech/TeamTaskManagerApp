@@ -49,7 +49,7 @@ export const createTask=async(data)=>{
 }
 
 
-export const fetchTasks=async()=>{
+export const userBasedFetchTasks=async()=>{
 
     try{
         const res=await axios.get(`${TASK_API_END_POINT}`,
@@ -63,3 +63,18 @@ export const fetchTasks=async()=>{
 }
 }
 
+
+
+export const fetchTasks=async()=>{
+
+    try{
+        const res=await axios.get(`${TASK_API_END_POINT}`,
+        {withCredentials:true});
+            
+        return res.data;
+    }
+
+    catch(error){
+        return error.response?.data;
+}
+}

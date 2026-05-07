@@ -5,7 +5,7 @@ import { createTask, updateTask } from "../api/task.api";
 import toast from "react-hot-toast";
 import { createProject, updateProject } from "../api/project.api";
 
-function Form({ mode, setShowForm, selectedData, setSelectedData,reRenderComponent }) {
+function Form() {
 
   const {
     register,
@@ -14,7 +14,13 @@ function Form({ mode, setShowForm, selectedData, setSelectedData,reRenderCompone
     formState: { errors },
   } = useForm();
 
-  const { role } = useAuth();
+  const { role,
+    mode,
+    setShowForm,
+    selectedData,
+    setSelectedData,
+    reRenderComponent,
+     } = useAuth();
 
   useEffect(() => {
     if (selectedData) {

@@ -4,7 +4,6 @@ import Task from "../models/task.model.js";
 
 export const allTasks=async(req,res)=>{
     const {userId}=req;
-
     try{
         const tasks=await Task.find({assignedTo:userId});
         if(tasks.length===0) return res.status(200).json({
@@ -25,6 +24,7 @@ export const allTasks=async(req,res)=>{
     }
    
 }
+
 
 export const getTask=async(req,res)=>{
     const {task_id}=req.params;

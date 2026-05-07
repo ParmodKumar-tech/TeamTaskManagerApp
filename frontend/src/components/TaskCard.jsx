@@ -2,13 +2,11 @@ import { useAuth } from "../contexts/AuthContext";
 
 function TaskCard ({
   task,
-  openProjectForm,
-  openTaskForm,
   onDeleteRerender,
 }) {
   
 
-  const {role,userId}=useAuth();
+  const {role,userId,openProjectForm,openTaskForm}=useAuth();
 
   const onhandleDelete= () => {
     if(task.projectName){
