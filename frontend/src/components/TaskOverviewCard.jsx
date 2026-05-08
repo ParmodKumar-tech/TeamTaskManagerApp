@@ -1,9 +1,10 @@
-import { useAuth } from "../contexts/AuthContext";
+
+import { useTask } from "../hooks/useTask";
 
 function TaskOverviewCard(){
     
     
-const {taskCount}=useAuth();
+const {taskCount}=useTask();
     
 
 const cards = [

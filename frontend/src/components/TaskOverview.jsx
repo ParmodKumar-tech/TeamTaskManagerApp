@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import TaskOverviewCard from "./TaskOverviewCard";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
+import { useForm } from "../hooks/useForm";
 
 
 function TaskOverview(){
     
-    const {role,openProjectForm,openTaskForm}=useAuth();
+    const {role}=useAuth();
+    const {openProjectForm,openTaskForm} =useForm();
+    
     return (
         <>
         <div className=" bg-white px-5">

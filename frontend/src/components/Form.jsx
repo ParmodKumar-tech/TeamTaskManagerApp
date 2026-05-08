@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useAuth } from "../contexts/AuthContext";
+import { useForm as ReactForm } from "react-hook-form";
+import { useAuth} from "../hooks/useAuth";
 import { createTask, updateTask } from "../api/task.api";
 import toast from "react-hot-toast";
 import { createProject, updateProject } from "../api/project.api";
+import { useForm } from "../hooks/useForm";
+import { useRerender } from "../hooks/useRerender";
 
 function Form() {
 
@@ -12,15 +14,16 @@ function Form() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = ReactForm();
 
-  const { role,
+  const { role } = useAuth();
+  const {reRenderComponent} =useRerender();
+
+  const {
     mode,
     setShowForm,
     selectedData,
-    setSelectedData,
-    reRenderComponent,
-     } = useAuth();
+    setSelectedData} =useForm();
 
   useEffect(() => {
     if (selectedData) {

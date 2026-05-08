@@ -1,14 +1,19 @@
 import { useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import TaskCard from "./TaskCard";
 import { deleteProject, fetchProjects } from "../api/project.api";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { fetchTasks, userBasedFetchTasks } from "../api/task.api";
-
+import { useTask } from "../hooks/useTask";
+import { useForm } from "../hooks/useForm";
+import { useRerender } from "../hooks/useRerender";
 
 function AllTaskAndProject(){
-    const {role,setTaskCount,openProjectForm,openTaskForm,refreshKey} =useAuth();
+    const {role} =useAuth();
+    const {taskCount, setTaskCount} =useTask();
+    const {openTaskForm ,openProjectForm} = useForm();
+    const {refreshKey}=useRerender();
     const [data,setData]=useState([]); 
   
 
@@ -22,7 +27,7 @@ function AllTaskAndProject(){
             fetchTask();
 
         }
-    }, [role,refreshKey]);
+    }, [role,refreshKey]); 
 
     const Projects= async()=>{
         const toastId = toast.loading("please wait...");
@@ -97,6 +102,7 @@ function AllTaskAndProject(){
                     { role ==="member"&&"All Task"}
             </h1>
         </div>
+        
         
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pb-5">
         {data.map((task)=>(

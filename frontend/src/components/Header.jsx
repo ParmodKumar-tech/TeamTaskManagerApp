@@ -3,7 +3,7 @@ import {Link, NavLink } from 'react-router-dom';
 
 import { logoutUser } from '../api/user.api';
 import toast from 'react-hot-toast';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 
 function Header(){
     const {userName,setUserName,userId, setUserId ,role,setRole}=useAuth();

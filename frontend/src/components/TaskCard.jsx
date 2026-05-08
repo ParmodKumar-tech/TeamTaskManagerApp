@@ -1,4 +1,5 @@
-import { useAuth } from "../contexts/AuthContext";
+import { useForm } from "../hooks/useForm";
+import { useAuth } from "../hooks/useAuth";
 
 function TaskCard ({
   task,
@@ -6,7 +7,8 @@ function TaskCard ({
 }) {
   
 
-  const {role,userId,openProjectForm,openTaskForm}=useAuth();
+  const {role,userId}=useAuth();
+  const {openProjectForm,openTaskForm} =useForm();
 
   const onhandleDelete= () => {
     if(task.projectName){

@@ -8,15 +8,14 @@ import DashboardPage from './pages/dashboardPage/DashboardPage'
 import LoginPage from './pages/loginPage/LoginPage'
 import SignuPage from './pages/signupPage/SignupPage'
 import Header from './components/Header'
-import { AuthProvider } from './contexts/AuthContext'
 import { Toaster } from 'react-hot-toast'
+
 
 function App() {
   
   return (
     <>
     <BrowserRouter>
-    <AuthProvider>
     <Header/>
     <Routes>
     <Route path="/" element={<DashboardPage/>}></Route>
@@ -25,7 +24,6 @@ function App() {
 
     </Routes>
     <Toaster />
-    </AuthProvider>
     </BrowserRouter>
     </>
   )

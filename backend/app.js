@@ -7,6 +7,7 @@ import connectDB from "./src/db/db.config.js";
 import cors from "cors";
 import "dotenv/config";
 
+
 const app=express();
 connectDB();
 app.use(cookieParser());

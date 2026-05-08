@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 import { loginUser } from '../../api/user.api';
 import { useEffect } from 'react';
+import { useTask } from '../../hooks/useTask';
 
 function LoginPage() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
-  const {setUserName,setUserId,setRole,setTaskCount}=useAuth();
+  const {setUserName,setUserId,setRole}=useAuth();
+  const  {setTaskCount} =useTask();
+  
   const navigate = useNavigate();
 
   const formFields = [
